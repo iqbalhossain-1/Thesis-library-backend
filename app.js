@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const DATABASE = process.env.DATABASE
-
+const DATABASE = process.env.DATABASE;
+const PORT = process.env.PORT || 400;
 const app = express();
 
 app.use(express.json());
@@ -13,20 +14,20 @@ app.use(express.urlencoded({ extended: false }));
 // var nodemailer = require("nodemailer");
 
 mongoose
-	.connect(DATABASE, {
-		useNewUrlParser: true,
-	})
-	.then(() => {
-		console.log("Connected to database");
-	})
-	.catch((e) => console.log(e));
-
+  .connect(DATABASE, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => console.log("DataBase Connected"))
+  .catch((err) => {
+    console.log(err);
+  });
 app.get("/", async (req, res) => {
-	try {
-		res.send("hello world!");
-	} catch (err) {
-		res.send("Error " + err);
-	}
+  try {
+    res.send("hello world!");
+  } catch (err) {
+    res.send("Error " + err);
+  }
 });
 
 const userRouter = require("./routes/user.router");
@@ -68,6 +69,6 @@ app.use("/uploads", uploadRouter);
 // 	} catch (error) {}
 // });
 
-app.listen(3000, () => {
-	console.log("Server Started at 3000");
+app.listen(PORT, () => {
+  console.log(`Server Started at ${PORT}`);
 });
