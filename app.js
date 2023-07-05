@@ -2,8 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const mongoUrl =
-	"mongodb+srv://anamul:anamul12345@cluster0.jaywm49.mongodb.net/?retryWrites=true&w=majority";
+const DATABASE = process.env.DATABASE
 
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 // var nodemailer = require("nodemailer");
 
 mongoose
-	.connect(mongoUrl, {
+	.connect(DATABASE, {
 		useNewUrlParser: true,
 	})
 	.then(() => {
