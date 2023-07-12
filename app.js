@@ -34,11 +34,13 @@ const userRouter = require("./routes/user.router");
 const authRouter = require("./routes/auth.router");
 const submissionRouter = require("./routes/submission.router");
 const uploadRouter = require("./routes/upload.router");
+const blogsRouter = require("./routes/blogs.router")
 
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.use("/submission", submissionRouter);
 app.use("/uploads", uploadRouter);
+app.use("/blogs", blogsRouter);
 
 // require("./model/user.model");
 
